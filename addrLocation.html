@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>机构地址</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta content="yes" name="apple-mobile-web-app-capable"/>
+        <meta content="black" name="apple-mobile-web-app-status-bar-style"/>
+        <meta content="telephone=no" name="format-detection"/>
+        <link rel="stylesheet" type="text/css" href="./css/orgAddress.css?v=0.1" />
+        <style>
+            [v-cloak] {
+                display: none !important;
+            }
+        </style>
+	</head>
+	<body>
+		<div id="addrLocation" v-cloak>
+            <div class="citylist">
+                <!--显示点击的是哪一个字母-->
+                <div id="showLetter" class="showLetter"><span>A</span></div>
+                <!--城市索引查询-->
+                <div class="letter">
+                    <ul>
+                        <li><a href="javascript:;">A</a></li>
+                        <li><a href="javascript:;">B</a></li>
+                        <li><a href="javascript:;">C</a></li>
+                        <li><a href="javascript:;">D</a></li>
+                        <li><a href="javascript:;">E</a></li>
+                        <li><a href="javascript:;">F</a></li>
+                        <li><a href="javascript:;">G</a></li>
+                        <li><a href="javascript:;">H</a></li>
+                        <li><a href="javascript:;">J</a></li>
+                        <li><a href="javascript:;">K</a></li>
+                        <li><a href="javascript:;">L</a></li>
+                        <li><a href="javascript:;">M</a></li>
+                        <li><a href="javascript:;">N</a></li>
+                        <li><a href="javascript:;">P</a></li>
+                        <li><a href="javascript:;">Q</a></li>
+                        <li><a href="javascript:;">R</a></li>
+                        <li><a href="javascript:;">S</a></li>
+                        <li><a href="javascript:;">T</a></li>
+                        <li><a href="javascript:;">W</a></li>
+                        <li><a href="javascript:;">X</a></li>
+                        <li><a href="javascript:;">Y</a></li>
+                        <li><a href="javascript:;">Z</a></li>
+                    </ul>
+                </div>
+                <!--城市列表-->
+                <div class="container">
+                    <div class="city">
+                        <div class="city-list" v-for="(item,index) in cityArray">
+                            <span class="city-letter" :id="item.name +1">{{item.name}}</span>
+                            <p v-for="(_item,_index) in item.data" :data-id="_item.id">{{_item.value}}</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+		</div>
+		
+		<script src="./libs/jquery-3.2.1.min.js"></script>
+		<!-- 引入Vue2.x -->
+		<script src="//vuejs.org/js/vue.min.js"></script>
+		<script>
+			var app = new Vue({
+				el:'#addrLocation',
+				data(){
+					return {
+                        //城市列表
+                        cityArray:[]
+                    }
+				},
+				mounted() {
+
+                    let _this = this;
+                    //获取城市列表
+                    $.ajax({
+                        url: "./data/city.json",  //json文件位置
+                        type: "GET",   //请求方式为get
+                        dataType: "json", //返回数据格式为json
+                        success: function(data) {//请求成功完成后要执行的方法 
+                            _this.cityArray = data.citylist;
+                        }
+                    })
+
+
+
+                    //点击切换当前城市
+                    $('body').on('click', '.city-list p', function () {
+                        alert($(this).html())
+
+                    });
+                    //点击索引查询城市
+                    $('body').on('click', '.letter a', function () {
+                        var s = $(this).html();
+                        $(window).scrollTop($('#' + s + '1').offset().top);
+                        $("#showLetter span").html(s);
+                        $("#showLetter").show();
+                    });
+                    //中间的标记显示
+                    $('body').on('onMouse', '.showLetter span', function () {
+                        $("#showLetter").show().delay(500).hide(0);
+                    });
+					
+				},
+				methods: {
+                   
+                   
+				}
+			})
+		</script>
+	</body>
+</html>

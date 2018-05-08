@@ -1,0 +1,61 @@
+#addrLocation {
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  display: flex;
+  flex-direction: column; }
+  #addrLocation .citylist {
+    background: #fff; }
+    #addrLocation .citylist .showLetter {
+      position: fixed;
+      color: orange;
+      width: 50px;
+      height: 50px;
+      top: 50%;
+      left: 50%;
+      border-radius: 50%;
+      border: orange 1px solid;
+      text-align: center;
+      display: none; }
+      #addrLocation .citylist .showLetter span {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 30px; }
+    #addrLocation .citylist .container {
+      width: 100%; }
+      #addrLocation .citylist .container .city {
+        overflow: hidden;
+        padding: 0 20px; }
+        #addrLocation .citylist .container .city .city-list {
+          width: 100%; }
+          #addrLocation .citylist .container .city .city-list .city-letter {
+            font-size: 20px;
+            display: inline-block;
+            padding-bottom: 5px;
+            padding-top: 10px;
+            border-bottom: 1px solid #e8ecf1;
+            width: 100%; }
+          #addrLocation .citylist .container .city .city-list p {
+            color: #afafaf;
+            width: 95%;
+            height: 20px;
+            line-height: 20px;
+            border-bottom: 1px solid #e8ecf1;
+            cursor: pointer; }
+        #addrLocation .citylist .container .city .city-list:nth-child(1) .city-letter {
+          padding-top: 0px; }
+    #addrLocation .citylist .letter {
+      width: auto;
+      position: fixed;
+      top: 6px;
+      right: 10px;
+      text-align: center; }
+      #addrLocation .citylist .letter ul {
+        list-style-type: none; }
+        #addrLocation .citylist .letter ul li a {
+          text-decoration: none;
+          color: orange;
+          font-size: 18px; }
+
+/*# sourceMappingURL=orgAddress.css.map */
